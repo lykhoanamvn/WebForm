@@ -1,0 +1,218 @@
+﻿
+
+@{
+    ViewBag.Title = "Goods Received";
+}
+@using WebForm.Models;
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+<br>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img">
+                        <img src="~/Content/uploads/iphone11.png" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px"/>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">IPhone 11</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$11.79</h5>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    </button>
+                </div><br><br>
+
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img">
+                        <img src="~/Content/uploads/iphone12.png" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px"/>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">IPhone 12</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$79.00</h5>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    </button>
+                </div><br><br>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img">
+                        <img src="~/Content/uploads/iphone13-pro.png" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px" />
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">IPhone 13 Pro Max</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$19.22</h5>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    </button>
+                </div><br><br>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img">
+                        <img src="~/Content/uploads/iphone14.jpg" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px"/>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">IPhone 14 Pro Max</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$28.25</h5>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    </button>
+                </div><br><br>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6 mb-lg-0">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img">
+
+                        <img src="~/Content/uploads/s23_lavender.jpg" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px"/>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">SS S23 Lavenders</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$129.79</h5>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6 mb-lg-0">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img">
+                          <img src="~/Content/uploads/samsung-galaxy-s22-128gb-moi-fullbox-my.jpg" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px"/>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Galaxy S22</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$44.42</h5>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6 mb-sm-0">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img">
+
+                        <img src="~/Content/uploads/galaxy-s22-128gb-moi-fullbox-my.jpg" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px"/>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Galaxy S22 128GB</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$24.69</h5>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img">
+                        <img src="~/Content/uploads/galaxy-note-20-5g-moi-100-fullbox-128gb-my-chip-snapdragon-865.jpg" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px"/>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Galaxy Note 20</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$79.79</h5>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>-->
+<br />
+<br />
+<br />
+<div class="container">
+    
+    <table class="table table-hover">
+        <tr class="danger">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Buy</th> 
+        </tr>
+        @foreach(phone p in ViewBag.ListPhone)
+            {
+                <tr>
+                    <td>@p.id</td>
+                    <td>@p.name</td>
+                    <td>@p.price</td>
+                    <td><a href="/ShoppingCart/AddtoCart/@p.id">Order Now</a></td>
+                </tr>
+            }
+        
+    </table>
+
+</div>

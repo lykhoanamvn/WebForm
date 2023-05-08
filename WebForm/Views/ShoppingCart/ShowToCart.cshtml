@@ -1,0 +1,170 @@
+﻿@model WebForm.Models.Cart
+
+@{
+    ViewBag.Title = "Cart";
+}
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+</svg>
+
+
+@{ if (Model != null)
+    {
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="text-c">Check Out</h1>
+            <p>Please fill the information correctly!!!!</p>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row">
+
+        <div class="col">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr class="danger">
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        int total = item.shopping.price.Value * item.shop_quantity;
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => item.shopping.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.shopping.price)
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("update_Quantity_Cart", "ShoppingCart"))
+                                {
+                                    <input type="hidden" value="@item.shopping.id" name="ID_Product" />
+                                    <input type="number" min="1" value="@item.shop_quantity" name="Quantity" />
+                                    <input type="submit" value="Update quantity" />
+                                }
+
+                            </td>
+                            <td>
+                                @total
+                            </td>
+                            <td>
+                                <a href="/ShoppingCart/RemoveCart/@item.shopping.id"> <button class="btn btn-danger"><i class="bi bi-trash">Remove</i></button></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right" style="color:red">Total =</td>
+                        <td>@Model.total()</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+
+       
+
+
+
+
+
+
+
+
+    </div>
+
+    <hr />
+    <hr />
+
+    <div class="row">
+        @{ var User = Session["agent"] as WebForm.Models.agent;
+
+            if (User == null)
+            {
+                using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                {
+                    <div class="col-md-4">
+                        <h3> Agent Information</h3>
+
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <input type="text" name="NameAgent" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" name="EmailAgent" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Address Delivery:</label>
+                            <input type="text" name="Address_Delivery" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <a href="/Home/SignIn"><input type="button" value="CheckOut" class="btn btn-block btn-success" /> </a>
+
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                {
+                    <div class="col-md-4 navbar-right">
+                        
+
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <p>@User.name </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <p>@User.Email </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Address Delivery:</label>
+                            <input type="text" name="Address_Delivery" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="CheckOut" class="btn btn-block btn-success" />
+                        </div>
+                    </div>
+                }
+            }
+
+        }
+
+    </div>
+
+
+    <a href="@Url.Action("Index", "Home")">Continue Shopping</a>
+
+</div>
+}
+else
+            {
+                <div class="container">
+                    <br />
+                    <br />
+                    <hr />
+                    <p class="text-center" style="font-size:50px;color:darkred">There is nothing in shopping cart</p>
+                    <hr />
+                </div>
+            }
+
+    }

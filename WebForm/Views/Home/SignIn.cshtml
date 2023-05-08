@@ -1,0 +1,114 @@
+﻿@model WebForm.Models.agent
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<title>Sign In</title>
+<script>
+    window.onload = function () {
+        const form = document.querySelector("form");
+        const errorMessage = document.querySelector(".errorMessage");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // prevent form submission
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("pwd").value;
+
+            if (!email || !password) {
+                errorMessage.textContent = "Please fill out all fields.";
+                return;
+            }
+
+
+
+
+            if (password.length < 6) {
+                errorMessage.textContent = "Password must contain at least 6 characters.";
+                return;
+            }
+
+            errorMessage.textContent = "";
+            form.submit(); // submit form if all conditions are met
+        });
+    };
+</script>
+<style>
+
+    body {
+        background-color: rgba(192,192,192,0.3);
+    }
+
+    fieldset {
+        border: 1px solid #ddd !important;
+        margin: auto;
+        margin-top: 100px;
+        padding: 10px;
+        position: relative;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding-left: 10px !important;
+    }
+
+    legend {
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px 5px 5px 10px;
+        background-color: hsl(0, 100%, 70%);
+    }
+
+
+    .errorMessage {
+        color: rgb(185, 0, 0);
+        font-size: 14px;
+        padding-bottom: 5px;
+    }
+</style>
+
+<body>
+
+<fieldset>
+    <legend class="mt-5 mb-3 text-center text-primary">
+        User Login
+    </legend>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-4">
+                <form class="form-horizontal" method="post" action="@Url.Action("SignIn")">
+                    <div class="form-group has-success has-feedback">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-success has-feedback">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+
+                    </div>
+                    <div class="errorMessage my-3">@ViewBag.LoginFail </div>
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+</body>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

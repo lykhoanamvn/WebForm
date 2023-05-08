@@ -1,0 +1,270 @@
+﻿@using WebForm.Models;
+
+@{
+    ViewBag.Title = "profile";
+}
+<!DOCTYPE html>
+<html>
+
+<style>
+
+    .track {
+        position: relative;
+        background-color: #ddd;
+        height: 7px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-bottom: 60px;
+        margin-top: 50px
+    }
+
+        .track .step {
+            -webkit-box-flex: 1;
+            flex-grow: 1;
+            width: 25%;
+            margin-top: -18px;
+            text-align: center;
+            position: relative
+        }
+
+            .track .step.active:before {
+                background: #FF5722
+            }
+
+            .track .step::before {
+                height: 7px;
+                position: absolute;
+                content: "";
+                width: 100%;
+                left: 0;
+                top: 18px
+            }
+
+            .track .step.active .icon {
+                background: #ee5435;
+                color: #fff
+            }
+
+        .track .icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+            border-radius: 100%;
+            background: #ddd
+        }
+
+        .track .step.active .text {
+            font-weight: 400;
+            color: #000
+        }
+
+        .track .text {
+            display: block;
+            margin-top: 7px
+        }
+</style>
+<br />
+
+<body>
+    @{ var User = Session["agent"] as WebForm.Models.agent;
+
+        <div class="container">
+
+            <p></p>
+            <div class="card-body">
+
+                <article class="card">
+                    <div class="card-body row">
+                        @foreach (P_Order p in ViewBag.ListProduct)
+                        {
+
+                            if (User.id == p.id_agent)
+                            {
+
+                                <br />
+                                <br />
+
+                                if (p.d_status == 0)
+                                {
+                                    <div class="row table-bordered">
+                                        <div class="col-md-4 ">
+                                            <strong>#ORDERID @p.id</strong>
+                                            
+                                            <div class="col"> <strong>Time order:</strong> @p.date </div>
+                                            <div class="col"> <strong>#ID Agent:</strong>  @p.id_agent</div>
+                                            <div class="col"> <strong>Name Agent:</strong>  @User.name</div>
+                                            <div class="col"> <strong>Address Delivery:</strong>  @p.Address_Description </div>
+                                            <div class="col"> <strong>Status:</strong> @p.descrip</div>
+                                            <div class="col">
+                                                <strong>View Detail:</strong>
+                                                <table class="table table-hover">
+                                                    <tr class="danger">
+                                                        <th>ID Phone</th>
+                                                        <th>ID Order</th>
+                                                        <th>Price</th>
+                                                        <th>Phone Name</th>
+                                                        <th>Quantity</th>
+                                                    </tr>
+                                                    @foreach (Order_detail a in ViewBag.Detail)
+                                                    {
+
+                                                        if (a.order_id == p.id)
+                                                        {
+                                                            <tr>
+                                                                <td>@a.id_phone</td>
+                                                                <td>@a.order_id</td>
+                                                                <td>@a.price</td>
+                                                                <td>
+                                                                    @a.p_name
+                                                                </td>
+                                                                <td>
+                                                                    @a.quantity
+                                                                </td>
+
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </table>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="col-md-8">
+                                            <div class="track">
+                                                <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                                                <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> On the way</span> </div>
+                                                <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> Finished </span> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (p.d_status == 1)
+                                {
+
+                                    <div class="row table-bordered">
+                                        <div class="col-md-4 ">
+                                            <strong>#ORDERID @p.id</strong>
+                                            <div class="col"> <strong>Time order:</strong> @p.date </div>
+                                            <div class="col"> <strong>#ID Agent:</strong>  @p.id_agent</div>
+                                            <div class="col"> <strong>Name Agent:</strong>  @User.name</div>
+                                            <div class="col"> <strong>Address Delivery:</strong>  @p.Address_Description </div>
+                                            <div class="col"> <strong>Status:</strong> @p.descrip</div>
+                                            <div class="col">
+                                                <strong>View Detail:</strong>
+                                                <table class="table table-hover">
+                                                    <tr class="danger">
+                                                        <th>ID Phone</th>
+                                                        <th>ID Order</th>
+                                                        <th>Price</th>
+                                                        <th>Phone Name</th>
+                                                        <th>Quantity</th>
+                                                    </tr>
+                                                    @foreach (Order_detail a in ViewBag.Detail)
+                                                    {
+
+                                                        if (a.order_id == p.id)
+                                                        {
+                                                            <tr>
+                                                                <td>@a.id_phone</td>
+                                                                <td>@a.order_id</td>
+                                                                <td>@a.price</td>
+                                                                <td>
+                                                                    @a.p_name
+                                                                </td>
+                                                                <td>
+                                                                    @a.quantity
+                                                                </td>
+
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="track">
+                                                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                                                <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> On the way</span> </div>
+                                                <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> Finished </span> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="row table-bordered">
+                                        <div class="col-md-4  ">
+                                            <strong>#ORDERID @p.id</strong>
+                                            <div class="col"> <strong>Time order:</strong> @p.date </div>
+                                            <div class="col"> <strong>#ID Agent:</strong>  @p.id_agent</div>
+                                            <div class="col"> <strong>Name Agent:</strong>  @User.name</div>
+                                            <div class="col"> <strong>Address Delivery:</strong>  @p.Address_Description </div>
+                                            <div class="col"> <strong>Status:</strong> @p.descrip</div>
+                                            <div class="col">
+                                                <strong>View Detail:</strong>
+                                                <table class="table table-hover">
+                                                    <tr class="danger">
+                                                        <th>ID Phone</th>
+                                                        <th>ID Order</th>
+                                                        <th>Price</th>
+                                                        <th>Phone Name</th>
+                                                        <th>Quantity</th>
+                                                    </tr>
+                                                    @foreach (Order_detail a in ViewBag.Detail)
+                                                    {
+
+                                                        if (a.order_id == p.id)
+                                                        {
+                                                            <tr>
+                                                                <td>@a.id_phone</td>
+                                                                <td>@a.order_id</td>
+                                                                <td>@a.price</td>
+                                                                <td>
+                                                                    @a.p_name
+                                                                </td>
+                                                                <td>
+                                                                    @a.quantity
+                                                                </td>
+
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="track">
+                                                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                                                <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> On the way</span> </div>
+                                                <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> Finished </span> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+
+                        }
+
+                    </div>
+                </article>
+
+                <hr>
+
+                <hr>
+                <a href="@Url.Action("Index", "Home")">Continue Shopping</a>
+            </div>
+
+        </div>
+
+    }
+</body>
+</html>

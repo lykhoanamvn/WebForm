@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNKD Shop</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+</head>
+<body>
+    @{ var User = Session["agent"] as WebForm.Models.agent; }
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("KNKD Shop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+
+                @{
+                    if (User == null)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Product", "Index", "Home")</li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/ShoppingCart/ShowToCart" style="margin-top:-15px">
+                                    <img src="@Url.Content("~/Content/uploads/cart.png")" style="height:30px;width:30px;margin-top:10px" />
+                                    @Html.Action("BagCart", "ShoppingCart")
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/Home/SignIn"><span class="glyphicon glyphicon-log-in"></span>Sign In</a>
+                            </li>
+
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Product", "Index", "Home")</li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/ShoppingCart/ShowToCart" style="margin-top:-15px">
+                                    <img src="@Url.Content("~/Content/uploads/cart.png")" style="height:30px;width:30px;margin-top:10px" />
+                                    @Html.Action("BagCart", "ShoppingCart")
+                                </a>
+                            </li>
+                            <li>
+                                <!--<a href="/Home/profile/@User.id" > Profile-->
+                                <a href="/Home/profile">
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a style="color:ghostwhite" href="#"> Hello: @User.name </a>
+                            </li>
+
+
+
+                            <li>@Html.ActionLink("Sign Out", "SignOut", "Home")</li>
+                        </ul>
+
+
+
+
+                    }
+                }
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
