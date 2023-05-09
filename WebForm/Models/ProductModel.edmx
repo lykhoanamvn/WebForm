@@ -35,6 +35,7 @@
           <Property Name="id_agent" Type="int" />
           <Property Name="date" Type="datetime" />
           <Property Name="Address_Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="payment" Type="varchar" MaxLength="500" />
           <Property Name="d_status" Type="int" />
           <Property Name="descrip" Type="varchar(max)" />
         </EntityType>
@@ -64,8 +65,8 @@
         <EntityContainer Name="finalEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="phones" EntityType="finalModel.phone" />
           <EntitySet Name="Order_detail" EntityType="finalModel.Order_detail" />
-          <EntitySet Name="P_Order" EntityType="finalModel.P_Order" />
           <EntitySet Name="agents" EntityType="finalModel.agent" />
+          <EntitySet Name="P_Order" EntityType="finalModel.P_Order" />
         </EntityContainer>
         <EntityType Name="phone">
           <Key>
@@ -92,17 +93,6 @@
           <Property Name="price" Type="Int32" />
           <Property Name="total" Type="Int32" />
         </EntityType>
-        <EntityType Name="P_Order">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_agent" Type="Int32" />
-          <Property Name="date" Type="DateTime" Precision="3" />
-          <Property Name="Address_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="d_status" Type="Int32" />
-          <Property Name="descrip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="agent">
           <Key>
             <PropertyRef Name="id" />
@@ -112,6 +102,18 @@
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Pass" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Repass" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="P_Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_agent" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="Address_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="payment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="d_status" Type="Int32" />
+          <Property Name="descrip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -146,18 +148,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="P_Order">
-            <EntityTypeMapping TypeName="finalModel.P_Order">
-              <MappingFragment StoreEntitySet="P_Order">
-                <ScalarProperty Name="descrip" ColumnName="descrip" />
-                <ScalarProperty Name="d_status" ColumnName="d_status" />
-                <ScalarProperty Name="Address_Description" ColumnName="Address_Description" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="id_agent" ColumnName="id_agent" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="agents">
             <EntityTypeMapping TypeName="finalModel.agent">
               <MappingFragment StoreEntitySet="agent">
@@ -165,6 +155,19 @@
                 <ScalarProperty Name="Pass" ColumnName="Pass" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P_Order">
+            <EntityTypeMapping TypeName="finalModel.P_Order">
+              <MappingFragment StoreEntitySet="P_Order">
+                <ScalarProperty Name="descrip" ColumnName="descrip" />
+                <ScalarProperty Name="d_status" ColumnName="d_status" />
+                <ScalarProperty Name="payment" ColumnName="payment" />
+                <ScalarProperty Name="Address_Description" ColumnName="Address_Description" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id_agent" ColumnName="id_agent" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

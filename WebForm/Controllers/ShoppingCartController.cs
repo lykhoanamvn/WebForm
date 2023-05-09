@@ -109,10 +109,11 @@ namespace WebForm.Controllers
                 _order.id_agent = User.id;
                 _order.date = DateTime.Now;
                 _order.Address_Description = form["Address_Delivery"];
+                _order.payment = form["payment"];
                 _order.d_status = 0;
-                _order.descrip = "Don hang chua duoc xac nhan!!! vui long doi";
+                _order.descrip = "Not confirm!!! Please wait";
                 db.P_Order.Add(_order);
-                
+
 
                 db.SaveChanges();
 
@@ -128,9 +129,34 @@ namespace WebForm.Controllers
                     db.Order_detail.Add(detail);
                 }
 
-                
+
 
                 db.SaveChanges();
+
+
+                //send email
+                var strSanPham = "";
+                var thanhtien = "";
+                var tongtien = "";
+                foreach(var sp in cart.Items)
+                {
+                    strSanPham += "<tr>";
+                    strSanPham += "<td>"+ sp.shopping.name + "</td>";
+                    strSanPham += "<td>" + sp.shop_quantity + "</td>";
+                    strSanPham += "<td>" + sp.shop_quantity * sp.shopping.price + "</td>";
+                    strSanPham += "</tr>";
+                    thanhtien += sp.shop_quantity * sp.shopping.price;
+                }
+                tongtien = thanhtien;
+
+                string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send2.html"));
+                contentCustomer = contentCustomer.Replace("{{MaDon}}",_order.id.ToString());
+                contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
+                contentCustomer = contentCustomer.Replace("{{TenKhachHang}}", User.name);
+                contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", _order.Address_Description);
+                contentCustomer = contentCustomer.Replace("{{NgayDat}}", _order.date.ToString());
+                contentCustomer = contentCustomer.Replace("{{TongTien}}", tongtien);
+                WebForm.Common.Common.SendEmail("KNKD Shop", "Order #" + _order.id, contentCustomer.ToString(), User.Email);
                 cart.ClearCart();
                 return RedirectToAction("Shopping_success", "ShoppingCart");
             }
@@ -140,5 +166,7 @@ namespace WebForm.Controllers
                 return Content("Error. Please check the information ...");
             }
         }
+
+        
     }
 }

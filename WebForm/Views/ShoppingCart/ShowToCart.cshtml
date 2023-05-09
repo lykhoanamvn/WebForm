@@ -59,7 +59,7 @@
                                 @total
                             </td>
                             <td>
-                                <a href="/ShoppingCart/RemoveCart/@item.shopping.id"> <button class="btn btn-danger"><i class="bi bi-trash">Remove</i></button></a>
+                                <a href="/ShoppingCart/RemoveCart/@item.shopping.id" class="btn btn-danger">Remove</a>
                             </td>
                         </tr>
                     }
@@ -93,67 +93,130 @@
     <hr />
 
     <div class="row">
-        @{ var User = Session["agent"] as WebForm.Models.agent;
+        
+            @{ var User = Session["agent"] as WebForm.Models.agent;
 
-            if (User == null)
-            {
-                using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                if (User == null)
                 {
-                    <div class="col-md-4">
-                        <h3> Agent Information</h3>
+                    using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                    {
+                        <div class="navbar-right col-md-4">
+                            <h3> Agent Information</h3>
 
-                        <div class="form-group">
-                            <label>Name:</label>
-                            <input type="text" name="NameAgent" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Email:</label>
-                            <input type="email" name="EmailAgent" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Address Delivery:</label>
-                            <input type="text" name="Address_Delivery" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <a href="/Home/SignIn"><input type="button" value="CheckOut" class="btn btn-block btn-success" /> </a>
+                            <div class="form-group">
+                                <label>Name:</label><br />
+                                <input type="text" name="NameAgent" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label><br />
+                                <input type="email" name="EmailAgent" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Address Delivery:</label><br />
+                                <input type="text" name="Address_Delivery" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <a href="/Home/SignIn"><input type="button" value="CheckOut" class="btn btn-block btn-success" /> </a>
 
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
-            }
-            else
-            {
-                using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                else
                 {
-                    <div class="col-md-4 navbar-right">
-                        
+                    using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                    {
+                        <div class="col-md-4 navbar-right">
 
-                        <div class="form-group">
-                            <label>Name:</label>
-                            <p>@User.name </p>
+
+                            <div class="form-group">
+                                <label>Name:</label>
+                                <p>@User.name </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <p>@User.Email </p>
+                            </div>
+                            <div class="form-group">
+                                <label>Address Delivery:</label>
+                                <input type="text" name="Address_Delivery" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="payment">Choose a payment:</label><br />
+
+                                <select name="payment" id="payment" class="form-control" onchange="displayBankInfo()">
+                                    <option value="">--Select mode of payment--</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Bank">Bank</option>
+                                </select>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <input type="submit" value="CheckOut" class="btn btn-block btn-success" />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Email:</label>
-                            <p>@User.Email </p>
+
+                        <div class="col-md-8 navbar-left">
+                            @foreach (var item in Model.Items)
+                            {
+                                int total = item.shopping.price.Value * item.shop_quantity;
+                                <div id="bankInfo" style="display: none;" class="col">
+
+
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="default">
+                                                <th><strong><input type="text" value="Bank Account:" style="border:none" readonly></strong></th>
+                                                <th><strong><input type="text" value="Name:" style="border:none" readonly></strong></th>
+                                                
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" name="bankAccount" id="bankAccount" style="border:none" class="form-control" readonly>
+                                                </td>
+
+                                                <td>
+                                                    <input type="text" name="name" id="name" style="border:none" class="form-control" readonly>
+                                                </td>
+
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong><input type="text" value="Bank Name:" style="border:none" class="form-control" readonly></strong>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="bankName" id="bankName" style="border:none" class="form-control" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong><strong><input type="text" value="Total =" style="border:none" class="form-control" readonly></strong></strong>
+                                                </td>
+                                                <td>
+                                                   <strong><strong><input type="text" value="@total" style="border:none" class="form-control" readonly></strong> </strong>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
                         </div>
-                        <div class="form-group">
-                            <label>Address Delivery:</label>
-                            <input type="text" name="Address_Delivery" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="CheckOut" class="btn btn-block btn-success" />
-                        </div>
-                    </div>
+                    }
                 }
+
             }
 
-        }
-
-    </div>
+        </div>
 
 
-    <a href="@Url.Action("Index", "Home")">Continue Shopping</a>
-
+        <a href="@Url.Action("Index", "Home")">Continue Shopping</a>
+    
 </div>
 }
 else
@@ -168,3 +231,23 @@ else
             }
 
     }
+
+<script>
+    function displayBankInfo() {
+        var paymentSelect = document.getElementById("payment");
+        var bankInfoDiv = document.getElementById("bankInfo");
+        var bankAccountInput = document.getElementById("bankAccount");
+
+        var name = document.getElementById("name");
+        var bankName = document.getElementById("bankName");
+
+        if (paymentSelect.value === "Bank") {
+            bankAccountInput.value = "0123456789"; // Thay đổi giá trị tài khoản ngân hàng
+            bankInfoDiv.style.display = "block"; // Hiển thị thông tin ngân hàng
+            name.value = "Nguyen Khanh Duy";
+            bankName.value = "khoanamBank";
+        } else {
+            bankInfoDiv.style.display = "none"; // Ẩn thông tin ngân hàng
+        }
+    }
+</script>

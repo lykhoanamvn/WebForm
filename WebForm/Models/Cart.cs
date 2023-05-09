@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -11,7 +12,7 @@ namespace WebForm.Models
 
             public int shop_quantity { get; set; }
 
-
+            public P_Order order { get; set; }
         }
 
         public class Cart
@@ -50,6 +51,29 @@ namespace WebForm.Models
                     item.shop_quantity= _quantity; 
                 }
             }
+
+            public void update_status(int id, int change, string description)
+            {
+
+            string connectionString = "initial catalog = final; data source = MSI\\SQLEXPRESS; integrated security = true";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "UPDATE P_Order SET d_status = @Status,descrip = @des WHERE id = @ProductId";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Status", change);
+                    command.Parameters.AddWithValue("@des", description);
+                    command.Parameters.AddWithValue("@ProductId", id);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    // Xử lý số hàng bị ảnh hưởng (rowsAffected) sau khi cập nhật
+                }
+            }
+
+        }
 
             public int total()
             {

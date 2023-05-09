@@ -61,5 +61,17 @@ namespace WebForm.Controllers
             return View();
         }
 
+        public ActionResult update_status(FormCollection form)
+        {
+            Cart cart = new Cart();
+            Session["Cart"] = cart;
+
+            int id_pro = int.Parse(form["ID_Product"]);
+            
+            cart.update_status(id_pro, 2,"Finished");
+
+            return RedirectToAction("profile", "Home");
+        }
+
     }
 }

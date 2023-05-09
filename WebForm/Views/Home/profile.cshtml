@@ -91,47 +91,56 @@
                                 {
                                     <div class="row table-bordered">
                                         <div class="col-md-4 ">
-                                            <strong>#ORDERID @p.id</strong>
                                             
-                                            <div class="col"> <strong>Time order:</strong> @p.date </div>
-                                            <div class="col"> <strong>#ID Agent:</strong>  @p.id_agent</div>
-                                            <div class="col"> <strong>Name Agent:</strong>  @User.name</div>
-                                            <div class="col"> <strong>Address Delivery:</strong>  @p.Address_Description </div>
-                                            <div class="col"> <strong>Status:</strong> @p.descrip</div>
-                                            <div class="col">
-                                                <strong>View Detail:</strong>
-                                                <table class="table table-hover">
-                                                    <tr class="danger">
-                                                        <th>ID Phone</th>
-                                                        <th>ID Order</th>
-                                                        <th>Price</th>
-                                                        <th>Phone Name</th>
-                                                        <th>Quantity</th>
-                                                    </tr>
-                                                    @foreach (Order_detail a in ViewBag.Detail)
+                                                <strong>#ORDERID @p.id</strong>
+
+                                                <div class="col"> <strong>Time order:</strong> @p.date </div>
+                                                <div class="col"> <strong>#ID Agent:</strong>  @p.id_agent</div>
+                                                <div class="col"> <strong>Name Agent:</strong>  @User.name</div>
+                                                <div class="col"> <strong>Address Delivery:</strong>  @p.Address_Description </div>
+                                                <div class="col"> <strong>Status:</strong> @p.descrip</div>
+                                                <div class="col">
+                                                    <strong>View Detail:</strong>
+                                                    <table class="table table-hover">
+                                                        <tr class="danger">
+                                                            <th>ID Phone</th>
+                                                            <th>ID Order</th>
+                                                            <th>Price</th>
+                                                            <th>Phone Name</th>
+                                                            <th>Quantity</th>
+                                                        </tr>
+                                                        @foreach (Order_detail a in ViewBag.Detail)
+                                                        {
+
+                                                            if (a.order_id == p.id)
+                                                            {
+                                                                <tr>
+                                                                    <td>@a.id_phone</td>
+                                                                    <td>@a.order_id</td>
+                                                                    <td>@a.price</td>
+                                                                    <td>
+                                                                        @a.p_name
+                                                                    </td>
+                                                                    <td>
+                                                                        @a.quantity
+                                                                    </td>
+
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    </table>
+                                                </div>
+                                                <div class="col">
+                                                    @using (Html.BeginForm("update_status", "Home"))
                                                     {
 
-                                                        if (a.order_id == p.id)
-                                                        {
-                                                            <tr>
-                                                                <td>@a.id_phone</td>
-                                                                <td>@a.order_id</td>
-                                                                <td>@a.price</td>
-                                                                <td>
-                                                                    @a.p_name
-                                                                </td>
-                                                                <td>
-                                                                    @a.quantity
-                                                                </td>
-
-                                                            </tr>
-                                                        }
+                                                        <input type="hidden" value="@p.id" name="ID_Product" />
+                                                        <input type="hidden" value="2" name="status" />
+                                                        <input type="submit" value="Received" class="btn btn-success" />
                                                     }
-                                                </table>
+                                                </div>
+                                            
                                             </div>
-
-
-                                        </div>
 
 
                                         <div class="col-md-8">
@@ -184,6 +193,9 @@
                                                         }
                                                     }
                                                 </table>
+                                            </div>
+                                            <div class="col">
+                                                <button type="button" class="btn btn-success"> Received </button>
                                             </div>
                                         </div>
 
@@ -238,6 +250,9 @@
                                                     }
                                                 </table>
                                             </div>
+                                            <div class="col">
+                                                
+                                            </div>
                                         </div>
 
                                         <div class="col-md-8">
@@ -251,7 +266,9 @@
                                 }
                             }
 
-
+                            
+                                
+                           
                         }
 
                     </div>

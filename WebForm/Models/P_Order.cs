@@ -18,6 +18,7 @@ namespace WebForm.Models
         public Nullable<int> id_agent { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string Address_Description { get; set; }
+        public string payment { get; set; }
         public Nullable<int> d_status { get; set; }
         public string descrip { get; set; }
     }

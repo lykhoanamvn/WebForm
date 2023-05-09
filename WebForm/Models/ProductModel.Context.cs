@@ -27,7 +27,7 @@ namespace WebForm.Models
     
         public virtual DbSet<phone> phones { get; set; }
         public virtual DbSet<Order_detail> Order_detail { get; set; }
-        public virtual DbSet<P_Order> P_Order { get; set; }
         public virtual DbSet<agent> agents { get; set; }
+        public virtual DbSet<P_Order> P_Order { get; set; }
     }
 }

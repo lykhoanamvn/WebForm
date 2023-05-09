@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/Content/uploads/icon_form.ico")">
 </head>
 <body>
     @{ var User = Session["agent"] as WebForm.Models.agent; }
@@ -15,11 +15,13 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+               <img src="~/Content/uploads/icon_form.ico" style="width:70px;height:70px;margin-top:-8px;" class="navbar-brand active"/>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                
                 @Html.ActionLink("KNKD Shop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
@@ -38,7 +40,7 @@
                                     @Html.Action("BagCart", "ShoppingCart")
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="/Home/SignIn"><span class="glyphicon glyphicon-log-in"></span>Sign In</a>
                             </li>
@@ -91,7 +93,10 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-
+        <footer>
+            <p>Nam Duy Co.,Ltd</p>
+            <p>&copy; @DateTime.Now.Year</p>
+        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

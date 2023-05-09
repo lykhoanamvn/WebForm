@@ -8,6 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <title>Sign In</title>
 <script>
     window.onload = function () {
@@ -76,27 +77,36 @@
 <body>
 
 <fieldset>
-    <legend class="mt-5 mb-3 text-center text-primary">
-        User Login
-    </legend>
-    <br>
+    <div class="form-group">
+        <h1 class=" text-center text-primary">
+            Agent Login
+        </h1>
+        <br>
+    </div>
     <div class="container">
         <div class="row">
+            
+
             <div class="col-md-12 col-md-offset-4">
                 <form class="form-horizontal" method="post" action="@Url.Action("SignIn")">
-                    <div class="form-group has-success has-feedback">
-                        <label for="email">Email:</label>
+                    <div class="form-group">
+                        <label for="email">Email:</label><br />
                         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                        
                     </div>
-                    <div class="form-group has-success has-feedback">
-                        <label for="pwd">Password:</label>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label><br />
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
-                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                       
 
                     </div>
                     <div class="errorMessage my-3">@ViewBag.LoginFail </div>
-                    <button class="btn btn-success" type="submit">Submit</button>
+
+                    <div class="form-group">
+                        <input type="submit" class="form-control btn btn-block btn-success" value="Submit">
+                    </div>
+                    
+                    
                 </form>
             </div>
         </div>

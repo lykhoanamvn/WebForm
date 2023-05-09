@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\Common.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,8 +169,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\send2.html" />
+    <Content Include="Content\templates\send2.html" />
     <Content Include="Content\uploads\galaxy-note-20-5g-moi-100-fullbox-128gb-my-chip-snapdragon-865.jpg" />
     <Content Include="Content\uploads\galaxy-s22-128gb-moi-fullbox-my.jpg" />
+    <Content Include="Content\uploads\icon_form.ico" />
     <Content Include="Content\uploads\iphone11.png" />
     <Content Include="Content\uploads\iphone12.png" />
     <Content Include="Content\uploads\iphone13-pro.png" />
