@@ -131,12 +131,12 @@
                                                     </table>
                                                 </div>
                                                 <div class="col">
-                                                    @using (Html.BeginForm("update_status", "Home"))
+                                                    @using (Html.BeginForm("remove_status", "Home"))
                                                     {
 
                                                         <input type="hidden" value="@p.id" name="ID_Product" />
                                                         <input type="hidden" value="2" name="status" />
-                                                        <input type="submit" value="Received" class="btn btn-success" />
+                                                        <input type="submit" value="Remove" class="btn btn-danger" />
                                                     }
                                                 </div>
                                             

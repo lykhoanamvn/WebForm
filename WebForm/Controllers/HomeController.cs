@@ -73,5 +73,16 @@ namespace WebForm.Controllers
             return RedirectToAction("profile", "Home");
         }
 
+        public ActionResult remove_status(FormCollection form)
+        {
+            Cart cart = new Cart();
+            Session["Cart"] = cart;
+
+            int id_pro = int.Parse(form["ID_Product"]);
+
+            cart.remove_status(id_pro);
+
+            return RedirectToAction("profile", "Home");
+        }
     }
 }

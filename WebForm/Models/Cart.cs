@@ -55,27 +55,47 @@ namespace WebForm.Models
             public void update_status(int id, int change, string description)
             {
 
-            string connectionString = "initial catalog = final; data source = MSI\\SQLEXPRESS; integrated security = true";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "UPDATE P_Order SET d_status = @Status,descrip = @des WHERE id = @ProductId";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string connectionString = "initial catalog = final; data source = MSI\\SQLEXPRESS; integrated security = true";
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@Status", change);
-                    command.Parameters.AddWithValue("@des", description);
-                    command.Parameters.AddWithValue("@ProductId", id);
+                    connection.Open();
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    // Xử lý số hàng bị ảnh hưởng (rowsAffected) sau khi cập nhật
+                    string query = "UPDATE P_Order SET d_status = @Status,descrip = @des WHERE id = @ProductId";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Status", change);
+                        command.Parameters.AddWithValue("@des", description);
+                        command.Parameters.AddWithValue("@ProductId", id);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        // Xử lý số hàng bị ảnh hưởng (rowsAffected) sau khi cập nhật
+                    }
                 }
             }
 
-        }
+            public void remove_status(int id)
+            {
 
-            public int total()
+                string connectionString = "initial catalog = final; data source = MSI\\SQLEXPRESS; integrated security = true";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "delete P_Order where id = @ProductId";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        
+                        command.Parameters.AddWithValue("@ProductId", id);
+
+                        command.ExecuteNonQuery();
+                       
+                    }
+                }
+            }
+
+        public int total()
             {
                 var total = items.Sum(s => s.shopping.price * s.shop_quantity);
                 return (int)total;
